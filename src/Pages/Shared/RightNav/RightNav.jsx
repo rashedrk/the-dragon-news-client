@@ -5,13 +5,14 @@ import QZone from '../QZone/QZone';
 import './RightNav.css'
 
 const RightNav = () => {
+    
     return (
         <div>
             {/*----------------
                 social login 
             ------------------*/}
             <h4>Login With</h4>
-            <Button className='mb-3' variant="outline-primary"><FaGoogle /> Login With Google</Button>
+            <Button className=' me-2 ' variant="outline-primary"><FaGoogle /> Login With Google</Button>
             <Button variant="outline-secondary"><FaGithub /> Login With Github</Button>
 
             {/* -------------------

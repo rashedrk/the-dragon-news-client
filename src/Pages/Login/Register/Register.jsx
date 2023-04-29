@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
 
 const Register = () => {
+    //receive createUser function using context 
+    const {createUser,setProfile} = useContext(AuthContext);
+
+    //handling from submit by register button click
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name,photo);
+        createUser(email, password) 
+        .then(result => {
+            const createdUser = result.user;
+            console.log(createdUser);
+            //user name and photo set
+            setProfile(name,photo)
+            .then(() => {console.log('user created');})
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
     return (
         <Container className='w-25 mx-auto'>
             <h4>Register here</h4>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Your Name</Form.Label>
                     <Form.Control required type="text" name="name" placeholder="Enter your name" />

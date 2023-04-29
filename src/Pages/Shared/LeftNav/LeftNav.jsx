@@ -11,13 +11,14 @@ const LeftNav = () => {
             .then(data => setCategories(data))
             .catch(err => console.error(err))
     }, []);
+    
     return (
         <div>
             <h4>All Category</h4>
             {
                 categories.map(category =>
                     <p key={category.id} className='ps-4'>
-                        <Link to={`category/${category.id}`} className='text-decoration-none text-secondary' >{category.name}</Link>
+                        <Link to={`/category/${category.id}`} className='text-decoration-none text-secondary' >{category.name}</Link>
                     </p>)
             }
         </div>

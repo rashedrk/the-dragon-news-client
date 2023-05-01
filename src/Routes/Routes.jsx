@@ -7,6 +7,7 @@ import Category from "../Pages/Home/Category/Category";
 import NewsLayout from "../Layout/NewsLayout";
 import News from "../Pages/News/News/News";
 import PrivateRoute from "./PrivateRoute";
+import Terms from "../Pages/Shared/Terms/Terms";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register></Register>
+            },
+            {
+                path: 'terms',
+                element: <Terms></Terms>
             }
         ]
     },

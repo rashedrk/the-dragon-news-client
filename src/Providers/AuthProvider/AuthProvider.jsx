@@ -9,9 +9,11 @@ const auth = getAuth(app)
 
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
+    const [loader,setLoader] = useState(true);
 
     //crate user on signup 
     const createUser = (email, password) => {
+        setLoader(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
     //updating user profile
@@ -23,6 +25,7 @@ const AuthProvider = ({children}) => {
 
     //sign in user
     const signIn = (email,password) => {
+        setLoader(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -31,6 +34,7 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             console.log("currently logged in user,", loggedUser);
             setUser(loggedUser);
+            setLoader(false);
         })
 
         //if user leave the site then the function don't looked for user / unmounted
@@ -39,6 +43,7 @@ const AuthProvider = ({children}) => {
 
     //sing out user
     const logOut = () => {
+        setLoader(true);
         return signOut(auth)
     }
     
@@ -47,7 +52,8 @@ const AuthProvider = ({children}) => {
         createUser,
         setProfile,
         signIn,
-        logOut
+        logOut,
+        loader
     }
     return (
         <AuthContext.Provider value={authInfo}>
